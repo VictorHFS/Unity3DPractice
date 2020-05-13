@@ -60,8 +60,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\BruteWarriorAnimationController.cs" />
     <Compile Include="Assets\Scripts\LocalPlayerIndicator.cs" />
     <Compile Include="Assets\Scripts\RotateAroundTarget.cs" />
+    <Compile Include="Assets\Scripts\RotateTowardsVelocity.cs" />
     <Compile Include="Assets\Scripts\SimpleMovement.cs" />
     <Compile Include="Assets\SimpleTransformMove.cs" />
     <None Include="Assets\MegaPack1Lite\RomanCityPack1Lite\README.txt" />
