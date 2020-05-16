@@ -14,7 +14,7 @@ public class RotateTowardsVelocity : MonoBehaviour
         eulerOffset = Quaternion.Euler(new Vector3(0, 0, 0));
     }
 
-    void Update()
+    void FixedUpdate()
     {
         Vector3 direcao = removeY(rb.velocity.normalized);
         if (direcao != Vector3.zero && transform.forward != direcao)

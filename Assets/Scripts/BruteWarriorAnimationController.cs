@@ -5,9 +5,7 @@ using UnityEngine;
 public class BruteWarriorAnimationController : MonoBehaviour
 {
 
-    public SimpleTransformMove move;
-
-    public Rigidbody rb;
+    public CharacterInputHandler move;
 
     private Animator animator;
 
@@ -17,13 +15,18 @@ public class BruteWarriorAnimationController : MonoBehaviour
         move.OnGroundTouch += this.OnGroundTouch;
         move.OnJump += this.OnJump;
         move.OnAttack += this.OnAttack;
+        move.OnMoving += this.OnMoving;
+        move.OnStop += this.OnStop;
     }
 
-    void Update()
+    void OnMoving()
     {
-        bool moving = rb.velocity.magnitude > 0;
-        animator.SetBool("Moving", moving);
-        animator.SetInteger("Velocity", (int) move.Speed);
+        animator.SetBool("Moving", true);
+    }
+
+    void OnStop()
+    {
+        animator.SetBool("Moving", false);
     }
      void OnGroundTouch()
     {

@@ -60,12 +60,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\AxisAcceleration.cs" />
     <Compile Include="Assets\Scripts\BruteWarriorAnimationController.cs" />
+    <Compile Include="Assets\Scripts\CharacterInputHandler.cs" />
     <Compile Include="Assets\Scripts\LocalPlayerIndicator.cs" />
     <Compile Include="Assets\Scripts\RotateAroundTarget.cs" />
+    <Compile Include="Assets\Scripts\RotateTowardInput.cs" />
     <Compile Include="Assets\Scripts\RotateTowardsVelocity.cs" />
     <Compile Include="Assets\Scripts\SimpleMovement.cs" />
-    <Compile Include="Assets\SimpleTransformMove.cs" />
     <None Include="Assets\MegaPack1Lite\RomanCityPack1Lite\README.txt" />
     <None Include="Assets\MegaPack1Lite\EnchantedForestPack1\README.txt" />
     <None Include="Assets\MegaPack1Lite\TropicalIslandPack1\README.txt" />
