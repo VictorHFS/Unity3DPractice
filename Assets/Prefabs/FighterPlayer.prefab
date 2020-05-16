@@ -13,8 +13,10 @@ GameObject:
   - component: {fileID: 388785192884800274}
   - component: {fileID: 6620097324208034318}
   - component: {fileID: 4159064162490062071}
+  - component: {fileID: 661019383710447180}
+  - component: {fileID: 3933819286014143008}
   m_Layer: 0
-  m_Name: Player
+  m_Name: FighterPlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -63,10 +65,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9745a5fb486027e41b9ccf4a3ef9bf4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxSpeed: 20
-  Acceleration: 5
-  SecondsToStop: 0.1
-  Speed: 0
   feetColliders:
   - {fileID: 0}
 --- !u!114 &6620097324208034318
@@ -107,6 +105,33 @@ MonoBehaviour:
   SecondsToStop: 0.1
   MaxSpeed: 10
   rb: {fileID: 388785192884800276}
+--- !u!114 &661019383710447180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 388785192884800272}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba7bae0b826d886428b2b80c23104b02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RelativeTo: {fileID: 0}
+--- !u!114 &3933819286014143008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 388785192884800272}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfaa49c8a66a6a44aa4b0fe5ce939a71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Velocity: 6
+  RelativeTo: {fileID: 0}
 --- !u!1 &5108246565343735809
 GameObject:
   m_ObjectHideFlags: 0
@@ -2430,7 +2455,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   move: {fileID: 388785192884800274}
-  rb: {fileID: 388785192884800276}
 --- !u!1 &5108246565343736293
 GameObject:
   m_ObjectHideFlags: 0
@@ -2982,7 +3006,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 271848545191079954}
-  - component: {fileID: 5596738678720728661}
   m_Layer: 0
   m_Name: Body
   m_TagString: Untagged
@@ -3005,17 +3028,3 @@ Transform:
   m_Father: {fileID: 388785192884800273}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5596738678720728661
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7358491795712638874}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97e0d14f4ac03d942873208b9c47e122, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Velocity: 6
-  rb: {fileID: 388785192884800276}

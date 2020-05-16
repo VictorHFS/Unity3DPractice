@@ -21,8 +21,6 @@ public class RotateTowardInput : MonoBehaviour
         handleClick("Up", RelativeTo.forward);
         handleClick("Down", -RelativeTo.forward);
 
-        Debug.DrawLine(this.transform.position, this.transform.position + (direcao * 5), Color.red);
-
         if (direcao != Vector3.zero && transform.forward != direcao)
         {
             Quaternion rotation = Quaternion.LookRotation(direcao);

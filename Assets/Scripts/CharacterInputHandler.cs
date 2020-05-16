@@ -13,9 +13,17 @@ public class CharacterInputHandler : MonoBehaviour
     public List<Collider> feetColliders;
 
     private bool holdJump = false;
-    private float jumpTime = 1;
+    private bool touchedGround = false;
+    private float jumpForce = 0.5f;
+    private float jumpTime = 0.5f;
     private float curJumpTime = 0;
 
+    private Rigidbody rb;
+
+    void Start()
+    {
+        rb = GetComponent<Rigidbody>();
+    }
     void Update()
     {
         inputCheck();
@@ -25,20 +33,21 @@ public class CharacterInputHandler : MonoBehaviour
     {
         if (holdJump && jumpTime > curJumpTime)
         {
-            curJumpTime += Time.deltaTime * jumpTime;
-            //rb.velocity += Vector3.up;
-        } else
+            touchedGround = false;
+            curJumpTime += Time.deltaTime;
+            rb.velocity += Vector3.up * jumpForce;
+        } else if(touchedGround)
         {
             curJumpTime = 0;
         }
     }
-
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
-        foreach( Collider collider in feetColliders)
+        foreach (Collider collider in feetColliders)
         {
-            if (other.bounds.Intersects(collider.bounds))
+            if (collision.collider.bounds.Intersects(collider.bounds))
             {
+                touchedGround = true;
                 OnGroundTouch.Invoke();
                 return;
             }
@@ -47,7 +56,7 @@ public class CharacterInputHandler : MonoBehaviour
 
     private void inputCheck()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && touchedGround)
         {
             holdJump = true;
             OnJump.Invoke();

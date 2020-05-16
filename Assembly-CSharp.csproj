@@ -60,10 +60,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\BasicDamageController.cs" />
     <Compile Include="Assets\Scripts\AxisAcceleration.cs" />
     <Compile Include="Assets\Scripts\BruteWarriorAnimationController.cs" />
     <Compile Include="Assets\Scripts\CharacterInputHandler.cs" />
+    <Compile Include="Assets\Scripts\HealthBarController.cs" />
+    <Compile Include="Assets\Scripts\InstantRotateTowardInput.cs" />
     <Compile Include="Assets\Scripts\LocalPlayerIndicator.cs" />
+    <Compile Include="Assets\Scripts\LookAt.cs" />
+    <Compile Include="Assets\Scripts\OffsetPosition.cs" />
     <Compile Include="Assets\Scripts\RotateAroundTarget.cs" />
     <Compile Include="Assets\Scripts\RotateTowardInput.cs" />
     <Compile Include="Assets\Scripts\RotateTowardsVelocity.cs" />
