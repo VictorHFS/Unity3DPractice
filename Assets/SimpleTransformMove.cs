@@ -6,7 +6,7 @@ public class SimpleTransformMove : MonoBehaviour
 {
     public float MaxSpeed = 20;    
     public float Acceleration = 1;
-    public float Deceleration= 1;
+    public float SecondsToStop= 1;
 
     public float Speed = 0;
     public event System.Action OnGroundTouch;
@@ -15,13 +15,15 @@ public class SimpleTransformMove : MonoBehaviour
 
     public List<Collider> feetColliders;
 
-    private float direction = 0;
+    private float directionY = 0;
+    private float directionX = 0;
     private Rigidbody rb;
     private Transform cameraTransform;
 
     private bool holdJump = false;
     private float jumpTime = 1;
     private float curJumpTime = 0;
+    private float deceleration = 0;
 
     private void Start()
     {
@@ -31,7 +33,8 @@ public class SimpleTransformMove : MonoBehaviour
 
     void Update()
     {
-        checkDirection();
+        checkVerticalDirection();
+        checkHozontalDirection();
         inputCheck();
     }
 
@@ -52,8 +55,10 @@ public class SimpleTransformMove : MonoBehaviour
     {
         foreach( Collider collider in feetColliders)
         {
+            Debug.Log("collider -> " + collider);
             if (other.bounds.Intersects(collider.bounds))
             {
+                Debug.Log("invoke");
                 OnGroundTouch.Invoke();
                 return;
             }
@@ -81,30 +86,92 @@ public class SimpleTransformMove : MonoBehaviour
 
     private void checkAcceleration()
     {
-        float y = Input.GetAxis("Vertical");
-        if (Mathf.Abs(y) > 0)
-        {
-            Speed += Acceleration * Time.deltaTime;
-        }
-        else
-        {
-            Speed -= Deceleration * Time.deltaTime;
-        }
-        Speed = Mathf.Clamp(Speed, 0, MaxSpeed);
-
-        rb.velocity = cameraTransform.forward * direction * Speed;
+        checkMovimentacao();
     }
 
-    void checkDirection()
+    private void checkMovimentacao()
+    {
+
+        float y = Input.GetAxis("Vertical");
+        Vector3 forwardMovement = getAccelerationVector(y, cameraTransform.forward) * directionY;
+
+        float x = Input.GetAxis("Horizontal");
+        Vector3 rightMovement = getAccelerationVector(x, cameraTransform.right) * directionX;
+
+        this.rb.velocity += forwardMovement + rightMovement;
+        this.rb.velocity = Vector3.ClampMagnitude(this.rb.velocity, MaxSpeed);
+    }
+
+    private Vector3 getAccelerationVector(float inputValue, Vector3 inputDirection)
+    {
+        if (Mathf.Abs(inputValue) > 0)
+        {
+            deceleration = 0;
+            Speed += Acceleration * Time.deltaTime;
+        }
+        else if (deceleration == 0)
+        {
+            deceleration = Speed * (1 / SecondsToStop);
+        }
+        if (deceleration > 0)
+        {
+            Speed -= deceleration * Time.deltaTime;
+        }
+
+        Speed = Mathf.Clamp(Speed, 0, MaxSpeed);
+
+        return removeY(inputDirection) * Speed;
+    }
+
+    private void checkMovimentoHorizontal()
+    {
+        float x = Input.GetAxis("Horizontal");
+        if (Mathf.Abs(x) > 0)
+        {
+            deceleration = 0;
+            Speed += Acceleration * Time.deltaTime;
+        }
+        else if (deceleration == 0)
+        {
+            deceleration = Speed * (1 / SecondsToStop);
+        }
+        if (deceleration > 0)
+        {
+            Speed -= deceleration * Time.deltaTime;
+        }
+
+        Speed = Mathf.Clamp(Speed, 0, MaxSpeed);
+
+        rb.velocity = removeY(cameraTransform.right) * Speed;
+    }
+
+    private Vector3 removeY(Vector3 vector) {
+        return new Vector3(vector.x, 0, vector.z);
+    }
+
+    void checkHozontalDirection()
+    {
+        float x = Input.GetAxis("Horizontal");
+        if (x > 0)
+        {
+            directionX = 1;
+        }
+        else if (x < 0)
+        {
+            directionX = -1;
+        }
+    }
+
+    void checkVerticalDirection()
     {
         float y = Input.GetAxis("Vertical");
         if (y > 0)
         {
-            direction = 1;
+            directionY = 1;
         }
         else if (y < 0)
         {
-            direction = -1;
+            directionY = -1;
         }
     }
 }

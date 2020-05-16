@@ -37,7 +37,6 @@ public class BruteWarriorAnimationController : MonoBehaviour
 
     void OnJump()
     {
-        Debug.Log("Jump");
         animator.SetTrigger("Jump");
         animator.SetBool("OnAir", true);
     }
