@@ -12,11 +12,15 @@ public class CharacterInputHandler : MonoBehaviour
 
     public List<Collider> feetColliders;
 
+    public float RepeatedInputDelay = 1;
+
     private bool holdJump = false;
     private bool touchedGround = false;
     private float jumpForce = 0.5f;
     private float jumpTime = 0.5f;
     private float curJumpTime = 0;
+
+    private Dictionary<string, float> previousInput = new Dictionary<string, float>();
 
     private Rigidbody rb;
 
@@ -26,7 +30,21 @@ public class CharacterInputHandler : MonoBehaviour
     }
     void Update()
     {
+        updatePreviousValueTimer();
         inputCheck();
+    }
+
+    private void updatePreviousValueTimer()
+    {
+        var novo = new Dictionary<string, float>();
+        foreach (var pair in previousInput)
+        {
+            if (previousInput[pair.Key] < RepeatedInputDelay)
+            {
+                novo.Add(pair.Key, pair.Value + Time.deltaTime);
+            }
+        }
+        previousInput = novo;
     }
 
     void FixedUpdate()
@@ -69,7 +87,11 @@ public class CharacterInputHandler : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            OnAttack.Invoke();
+            if (!this.previousInput.ContainsKey("Attack"))
+            {
+                this.previousInput.Add("Attack", 0);
+                OnAttack.Invoke();
+            }
         }
 
         if(Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)

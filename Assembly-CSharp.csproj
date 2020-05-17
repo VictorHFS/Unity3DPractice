@@ -60,10 +60,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\BasicDamageController.cs" />
+    <Compile Include="Assets\AudioController.cs" />
+    <Compile Include="Assets\CubeAudioController.cs" />
     <Compile Include="Assets\Scripts\AxisAcceleration.cs" />
+    <Compile Include="Assets\Scripts\BasicDamageController.cs" />
     <Compile Include="Assets\Scripts\BruteWarriorAnimationController.cs" />
     <Compile Include="Assets\Scripts\CharacterInputHandler.cs" />
+    <Compile Include="Assets\Scripts\DeathController.cs" />
     <Compile Include="Assets\Scripts\HealthBarController.cs" />
     <Compile Include="Assets\Scripts\InstantRotateTowardInput.cs" />
     <Compile Include="Assets\Scripts\LocalPlayerIndicator.cs" />
