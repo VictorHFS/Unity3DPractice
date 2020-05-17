@@ -5,13 +5,13 @@ using UnityEngine;
 public class DeathController : MonoBehaviour
 {
     public HealthBarController health;
-    // Start is called before the first frame update
+
     void Start()
     {
-        health.OnDeath += this.OnDeath;
+        //health.OnDeath += this.OnDeath;
     }
 
-    void OnDeath()
+    public void OnDeath()
     {
         this.gameObject.SetActive(false);
     }

@@ -9,6 +9,7 @@ public class HealthBarController : MonoBehaviour
     public Image Foreground;
     public float MaxHealth;
     public event System.Action OnDeath;
+    public event System.Action<float> OnHealthChange;
     private float currentHealth;
     private float maxHealthScale;
 
@@ -29,6 +30,7 @@ public class HealthBarController : MonoBehaviour
     public void applyDamage(float damage)
     {
         this.currentHealth -= damage;
+        OnHealthChange.Invoke(currentHealth);
         float scaledDamage = (damage * maxHealthScale) / MaxHealth;
         Foreground.transform.localScale = new Vector3(
             Mathf.Clamp(Foreground.transform.localScale.x - scaledDamage, 0, MaxHealth),

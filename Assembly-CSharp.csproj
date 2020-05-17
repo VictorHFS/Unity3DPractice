@@ -60,22 +60,24 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\AudioController.cs" />
-    <Compile Include="Assets\CubeAudioController.cs" />
-    <Compile Include="Assets\Scripts\AxisAcceleration.cs" />
+    <Compile Include="Assets\ParticleController.cs" />
+    <Compile Include="Assets\Scripts\Audio\CubeAudioController.cs" />
     <Compile Include="Assets\Scripts\BasicDamageController.cs" />
     <Compile Include="Assets\Scripts\BruteWarriorAnimationController.cs" />
     <Compile Include="Assets\Scripts\CharacterInputHandler.cs" />
     <Compile Include="Assets\Scripts\DeathController.cs" />
     <Compile Include="Assets\Scripts\HealthBarController.cs" />
-    <Compile Include="Assets\Scripts\InstantRotateTowardInput.cs" />
     <Compile Include="Assets\Scripts\LocalPlayerIndicator.cs" />
-    <Compile Include="Assets\Scripts\LookAt.cs" />
-    <Compile Include="Assets\Scripts\OffsetPosition.cs" />
-    <Compile Include="Assets\Scripts\RotateAroundTarget.cs" />
-    <Compile Include="Assets\Scripts\RotateTowardInput.cs" />
-    <Compile Include="Assets\Scripts\RotateTowardsVelocity.cs" />
-    <Compile Include="Assets\Scripts\SimpleMovement.cs" />
+    <Compile Include="Assets\Scripts\Movement\AudioController.cs" />
+    <Compile Include="Assets\Scripts\Movement\AxisAcceleration.cs" />
+    <Compile Include="Assets\Scripts\Movement\InstantRotateTowardInput.cs" />
+    <Compile Include="Assets\Scripts\Movement\LookAt.cs" />
+    <Compile Include="Assets\Scripts\Movement\OffsetPosition.cs" />
+    <Compile Include="Assets\Scripts\Movement\RotateAroundTarget.cs" />
+    <Compile Include="Assets\Scripts\Movement\RotateTowardInput.cs" />
+    <Compile Include="Assets\Scripts\Movement\RotateTowardsVelocity.cs" />
+    <Compile Include="Assets\Scripts\Movement\SimpleMovement.cs" />
+    <Compile Include="Assets\SmokeParticleController.cs" />
     <None Include="Assets\MegaPack1Lite\RomanCityPack1Lite\README.txt" />
     <None Include="Assets\MegaPack1Lite\EnchantedForestPack1\README.txt" />
     <None Include="Assets\MegaPack1Lite\TropicalIslandPack1\README.txt" />
@@ -83,6 +85,7 @@
     <None Include="Assets\MegaPack1Lite\GreekPack1Lite\README.txt" />
     <None Include="Assets\MegaPack1Lite\Steampunk\README.txt" />
     <None Include="Assets\MegaPack1Lite\SciFiPack1\README.txt" />
+    <None Include="Assets\Polygonal Particles\Assets\Shaders\GradientBackgroundShader.shader" />
     <Reference Include="Cinemachine">
       <HintPath>D:/vhfur/3DPracticeProject/Library/ScriptAssemblies/Cinemachine.dll</HintPath>
     </Reference>

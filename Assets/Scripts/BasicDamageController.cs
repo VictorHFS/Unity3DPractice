@@ -7,9 +7,12 @@ public class BasicDamageController : MonoBehaviour
     public List<Collider> Colliders;
     public float Damage = 1;
     public float DamageTimeGap = 1;
+    public float PushForce = 1;
     public CharacterInputHandler inputHandler;
     public event System.Action OnDamage;
 
+    private Rigidbody targetBody;
+    private Vector3 forceToBeApplied = Vector3.zero;
     private float runningTime = 0;
     private bool isAttacking = false;
     void Start()
@@ -28,6 +31,18 @@ public class BasicDamageController : MonoBehaviour
         {
             this.isAttacking = false;
             runningTime = 0;
+        }
+    }
+
+    void FixedUpdate()
+    {
+        if (forceToBeApplied != Vector3.zero && targetBody)
+        {
+            Debug.Log("targetBody -> " + targetBody);
+            Debug.Log("forceToBeApplied -> "+ forceToBeApplied);
+            targetBody.AddForce(forceToBeApplied);
+            targetBody = null;
+            forceToBeApplied = Vector3.zero;
         }
     }
 
@@ -52,9 +67,22 @@ public class BasicDamageController : MonoBehaviour
                 this.isAttacking = false;
                 runningTime = 0;
                 health.applyDamage(Damage);
-                this.OnDamage.Invoke();
+                Vector3 damageDirection = (other.gameObject.transform.position - collider.gameObject.transform.position).normalized;
+                forceToBeApplied = replaceY(damageDirection * PushForce, PushForce);
+                targetBody = other.gameObject.GetComponent<Rigidbody>();
+                OnDamage.Invoke();
             }
         }
+    }
+
+    private Vector3 removeY(Vector3 vector)
+    {
+        return new Vector3(vector.x, 0, vector.z);
+    }
+
+    private Vector3 replaceY(Vector3 vector, float y)
+    {
+        return new Vector3(vector.x, y, vector.z);
     }
 
     private void OnAttack() {
